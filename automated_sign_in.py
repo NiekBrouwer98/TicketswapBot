@@ -2,11 +2,6 @@ import time
 from selenium import webdriver
 
 def sign_in(driver, email, password):
-        driver.get('http://www.ticketswap.nl/')
-        main_page = driver.current_window_handle
-        time.sleep(1)
-        driver.find_element_by_xpath('//button[text()="Inloggen"]').click()
-        time.sleep(1)
         driver.find_element_by_xpath('/html/body/div[3]/div/div/div/div/div/button').click()
         time.sleep(1)
         for handle in driver.window_handles:
@@ -28,4 +23,5 @@ with open('pw_file.txt', 'r') as f:
         pw = str(line[1])
 
 sign_in(driver, email, pw)
+
 
