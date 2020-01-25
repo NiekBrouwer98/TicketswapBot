@@ -25,10 +25,17 @@ class classified_information:
         f.write(f'{self.encrypted_str}\n')
         print('encryption complete')
 
-fb_email = classified_information('niek.brouwer@me.com', 1, 'pw_file.txt')
-fb_pw = classified_information('password', -1, 'pw_file.txt')
 
-print(fb_email.encrypter())
-print(fb_pw.encrypter())
-fb_email.write_to_txt_file()
-fb_pw.write_to_txt_file()
+def main_encryper():
+    print('All your personal information will be processed in an encrypted form.\n')
+    email = input('What is your emailadres?\n')
+    pw = input('What is your password?\n')
+
+    fb_email = classified_information(email, 1, 'pw_file.txt')
+    fb_pw = classified_information(pw, 1, 'pw_file.txt')
+
+    print(f'This is your encrypted email: {fb_email.encrypter()}')
+    print(f'This is your encrypted password: {fb_pw.encrypter()}')
+    fb_email.write_to_txt_file()
+    fb_pw.write_to_txt_file()
+
