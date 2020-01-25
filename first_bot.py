@@ -35,7 +35,8 @@ class ticket_buyer:
         print('...finding ticket')
 
     def buyer(self):
-        print('Ticket available!')
+        # self.driver.find_element_by_xpath('/html/body/div[1]/div[2]/div[3]/div/div[1]/ul/div[1]/a/div/header/h3').click()
+        self.driver.find_element_by_xpath('//button[text()="Koop een ticket"]').click()
 
 
 def main():
