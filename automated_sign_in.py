@@ -16,12 +16,12 @@ def sign_in(driver, email, password):
         driver.switch_to.window(main_page)
         time.sleep(5)
 
-driver = webdriver.Chrome(executable_path='C:/Users/niekb/Downloads/chromedriver_win32\chromedriver.exe')
-with open('pw_file.txt', 'r') as f:
-        line = f.readlines()
-        email = str(line[0])
-        pw = str(line[1])
-
-sign_in(driver, email, pw)
+# driver = webdriver.Chrome(executable_path='C:/Users/niekb/Downloads/chromedriver_win32\chromedriver.exe')
+# with open('pw_file.txt', 'r') as f:
+#         line = f.readlines()
+#         email = str(line[0])
+#         pw = str(line[1])
+#
+# sign_in(driver, email, pw)
 
 
