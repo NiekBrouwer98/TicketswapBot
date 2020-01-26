@@ -25,17 +25,23 @@ class classified_information:
         f.write(f'{self.encrypted_str}\n')
         print('encryption complete')
 
+    def main_encrypter(self):
+        print('All your personal information will be processed in an encrypted form.\n')
+        email = input('What is your emailadres?\n')
+        pw = input('What is your password?\n')
 
-def main_encryper():
-    print('All your personal information will be processed in an encrypted form.\n')
-    email = input('What is your emailadres?\n')
-    pw = input('What is your password?\n')
+        fb_email = classified_information(email, 1, 'pw_file.txt')
+        fb_pw = classified_information(pw, 1, 'pw_file.txt')
 
-    fb_email = classified_information(email, 1, 'pw_file.txt')
-    fb_pw = classified_information(pw, 1, 'pw_file.txt')
+        print(f'This is your encrypted email: {fb_email.encrypter()}')
+        print(f'This is your encrypted password: {fb_pw.encrypter()}')
+        fb_email.write_to_txt_file()
+        fb_pw.write_to_txt_file()
 
-    print(f'This is your encrypted email: {fb_email.encrypter()}')
-    print(f'This is your encrypted password: {fb_pw.encrypter()}')
-    fb_email.write_to_txt_file()
-    fb_pw.write_to_txt_file()
+    def cleaning(self):
+        open(self.file, 'w').close()
 
+
+#test erasing file
+erase_file = classified_information('test string', 1, 'pw_file.txt')
+erase_file.cleaning()
