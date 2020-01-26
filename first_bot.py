@@ -10,16 +10,16 @@ class ticket_buyer:
 
     def ticket_finder(self):
         self.driver.get('http://www.ticketswap.nl/');
-        time.sleep(1) # Let the user actually see something!
+        time.sleep(1)
         search_box = self.driver.find_element_by_xpath("//input[@placeholder=\"Zoeken naar evenementen, locaties en steden\"]")
         time.sleep(1)
         search_box.send_keys(self.festival)
-        time.sleep(3)
+        time.sleep(2)
         festival_box = self.driver.find_element_by_xpath('/html/body/div[1]/div[1]/div[1]/div[2]/div/div[2]/div[2]/div/h4').click()
         time.sleep(1)
         ticket_box = self.driver.find_element_by_xpath(f'//h4[text()="{self.ticket}"]')
         self.driver.execute_script("arguments[0].click();", ticket_box)
-        time.sleep(5)
+        time.sleep(3)
         print('ticket found')
         self.driver.find_element_by_xpath('/html/body/div[3]/div/div/button').click()
         time.sleep(1)
@@ -46,5 +46,22 @@ class ticket_buyer:
         time.sleep(5)
         return True
 
-
-# customer_choice = ticket_buyer('Dekmantel festival 2020', '4 Dagenkaart')
+    def sign_in(self, email, password):
+        clicker = self.driver.find_element_by_xpath('//button[text()="Koop een ticket"]')
+        self.driver.execute_script("arguments[0].click();", clicker)
+        time.sleep(2)
+        main_page = self.driver.current_window_handle
+        self.driver.find_element_by_xpath('/html/body/div[3]/div/div/div/div/div/button').click()
+        time.sleep(1)
+        for handle in self.driver.window_handles:
+                if handle != main_page:
+                        login_page = handle
+        self.driver.switch_to.window(login_page)
+        self.driver.find_element_by_xpath('//input[@id="email"]').send_keys(email)
+        time.sleep(1)
+        self.driver.find_element_by_xpath('//input[@id="pass"]').send_keys(password)
+        time.sleep(1)
+        login_button = self.driver.find_element_by_xpath('//input[@value="Log In"]')
+        self.driver.execute_script("arguments[0].click();", login_button)
+        self.driver.switch_to.window(main_page)
+        time.sleep(5)
